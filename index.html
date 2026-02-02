@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ambika ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 22px;
+    width: 90%;
+    max-width: 420px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    animation: fadeIn 1.2s ease;
+}
+
+.hidden { display: none; }
+
+input {
+    width: 80%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+button {
+    margin: 12px;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.primary {
+    background: #fff;
+    color: #ff4f81;
+}
+
+.secondary {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    position: absolute;
+}
+
+#musicBtn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.25);
+    border: 1.5px solid #fff;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.collage img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="C:\Users\Manav Jadhav\Downloads\HER-20260125T165838Z-3-001\HER\PROJECT VALENTINE\music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()">🔇</button>
+
+<!-- STEP 1 -->
+<div class="card" id="step1">
+    <h1>Hello Ambika ❤️</h1>
+    <p>A few puzzles stand between you and something special.</p>
+    <button class="primary" onclick="startExperience()">Start</button>
+</div>
+
+<!-- PUZZLE 1 -->
+<div class="card hidden" id="step2">
+    <h2>Puzzle 1 🧩</h2>
+    <p>
+        I’m not written in your name,<br>
+        but I’m hidden in your smile.<br>
+        Who am I?
+    </p>
+    <input id="a1" placeholder="Your answer">
+    <button class="primary" onclick="check1()">Next</button>
+</div>
+
+<!-- PUZZLE 2 -->
+<div class="card hidden" id="step3">
+    <h2>Puzzle 2 💭</h2>
+    <p>
+        I increase when you share me,<br>
+        disappear when ignored,<br>
+        and I’m all I want from you.
+    </p>
+    <input id="a2" placeholder="One word">
+    <button class="primary" onclick="check2()">Next</button>
+</div>
+
+<!-- PUZZLE 3 -->
+<div class="card hidden" id="step4">
+    <h2>Puzzle 3 ❤️</h2>
+    <p>
+        Finish this:<br>
+        Me + You = ?
+    </p>
+    <input id="a3" placeholder="Answer">
+    <button class="primary" onclick="check3()">Unlock</button>
+</div>
+
+<!-- PROPOSAL -->
+<div class="card hidden" id="step5">
+    <h1>Ambika ❤️</h1>
+    <p>You solved every puzzle… just like you solve my heart.</p>
+    <h2>Will you be my Valentine? 💌</h2>
+
+    <button class="primary" onclick="yes()">YES 💖</button>
+    <button class="secondary" id="noBtn">NO 🙃</button>
+</div>
+
+<!-- COLLAGE -->
+<div class="card hidden" id="step6">
+    <h1>She Said YES 💍❤️</h1>
+    <p>Here’s a little glimpse of us…</p>
+
+    <div class="collage">
+        <img src="C:\Users\Manav Jadhav\Downloads\HER-20260125T165838Z-3-001\HER\PROJECT VALENTINE\photo1.jpeg">
+        <img src="C:\Users\Manav Jadhav\Downloads\HER-20260125T165838Z-3-001\HER\PROJECT VALENTINE\photo2.jpeg">
+        <img src="C:\Users\Manav Jadhav\Downloads\HER-20260125T165838Z-3-001\HER\PROJECT VALENTINE\photo3.jpeg">
+        <img src="C:\Users\Manav Jadhav\Downloads\HER-20260125T165838Z-3-001\HER\PROJECT VALENTINE\photo4.jpeg">
+    </div>
+
+    <p style="margin-top:15px;">
+        This is just the beginning.
+    </p>
+</div>
+
+<script>
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+        musicBtn.innerText = "🔊";
+    } else {
+        music.pause();
+        musicBtn.innerText = "🔇";
+    }
+}
+
+function startExperience() {
+    music.play();
+    musicBtn.innerText = "🔊";
+    goStep(2);
+}
+
+function goStep(n) {
+    document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+    document.getElementById('step' + n).classList.remove('hidden');
+    if (n !== 1) musicBtn.style.display = "none";
+}
+
+function check1() {
+    if (a1.value.trim().toLowerCase() === "manav") goStep(3);
+    else alert("You know this 😌");
+}
+
+function check2() {
+    if (a2.value.trim().toLowerCase() === "love") goStep(4);
+    else alert("Think emotionally ❤️");
+}
+
+function check3() {
+    if (a3.value.trim().toLowerCase() === "us") goStep(5);
+    else alert("Almost there 💕");
+}
+
+function yes() {
+    goStep(6);
+}
+
+const noBtn = document.getElementById("noBtn");
+function moveNo() {
+    noBtn.style.top = Math.random() * 80 + "vh";
+    noBtn.style.left = Math.random() * 80 + "vw";
+    noBtn.innerText = "Nice try 😏";
+}
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
